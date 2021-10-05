@@ -1,12 +1,12 @@
 from flask import Flask
 import pywps
 from pywps import Service
+from service import MyProcess
 
 
 
 app = Flask(__name__)
-# service = Service([myService], ['pywps.cfg'])
-wpsService = Service([])
+wpsService = Service([MyProcess()])
 
 @app.route("/")
 def hello_world():
