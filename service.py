@@ -1,5 +1,6 @@
 from pywps import Process, ComplexOutput, LiteralInput, Format
 import json
+import time
 
 
 class MyProcess(Process):
@@ -23,12 +24,23 @@ class MyProcess(Process):
             title='My process',
             abstract='A very simple process',
             inputs=inputs,
-            outputs=outputs
+            outputs=outputs,
+            store_supported=True,
+            status_supported=True
         )
 
     def runMyProcess(self, request, response):
         # get inputs from request-object
         givenInput = request.inputs['someVal'][0].data
+        
+        # sleep a while to simulate processing
+        response.update_status('Ongoing...', 0)
+        time.sleep(3.0)
+        response.update_status('Ongoing...', 30)
+        time.sleep(3.0)
+        response.update_status('Ongoing...', 60)
+        time.sleep(3.0)
+
         theOutput = {
             'type': 'FeatureCollection',
             'features': [],

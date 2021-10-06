@@ -32,3 +32,29 @@ content-type: application/xml
       </wps:ResponseDocument>
    </wps:ResponseForm>
 </wps:Execute>
+
+###
+
+
+
+POST http://localhost:5000/wps?service=WPS&version=1.0.0&request=ExecuteProcess&identifier=MyProcess HTTP/1.1
+content-type: application/xml
+
+<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0" service="WPS" version="1.0.0">
+   <p0:Identifier xmlns:p0="http://www.opengis.net/ows/1.1">MyProcess</p0:Identifier>
+   <wps:DataInputs>
+      <wps:Input>
+         <p0:Identifier xmlns:p0="http://www.opengis.net/ows/1.1">someVal</p0:Identifier>
+         <wps:Data>
+            <wps:LiteralData>42</wps:LiteralData>
+         </wps:Data>
+      </wps:Input>
+   </wps:DataInputs>
+   <wps:ResponseForm>
+      <wps:ResponseDocument storeExecuteResponse="true" status="true">
+         <wps:Output mimeType="application/geo+json" asReference="false">
+            <p0:Identifier xmlns:p0="http://www.opengis.net/ows/1.1">someOutput</p0:Identifier>
+         </wps:Output>
+      </wps:ResponseDocument>
+   </wps:ResponseForm>
+</wps:Execute>
