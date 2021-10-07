@@ -1,5 +1,4 @@
 from flask import Flask, send_from_directory
-import pywps
 from pywps import Service
 from service import MyProcess
 
@@ -18,6 +17,6 @@ def wps():
     return wpsService
 
 
-@app.route('/outputs/<fileName>')
-def serveFiles(fileName):
-    return send_from_directory('outputs', fileName)
+# @app.route('/outputs/<fileName>')
+# def serveFiles(fileName):
+#     return send_from_directory('outputs', fileName)
